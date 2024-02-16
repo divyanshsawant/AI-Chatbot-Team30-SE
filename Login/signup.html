@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+   
+    <link rel="stylesheet" href="css/logincss.css">
+
+    <title>Login Page</title>
+</head>
+
+<body>
+
+    <div class="section">
+        <div class="container">
+            <div class="form">
+                <div class="left-side" style="border-right: 6px solid #F8821E;background-color:#002e5b">
+                    <div class="content">
+                        <h3>Ask Your Questions</h3>
+                        <p></p>
+                        <div class="imageinter">
+                            <img src="images/gifforinterview.gif" width="350">
+                        </div>
+                    </div>
+                    <div class="social">
+                        <ul class="social-icons">
+                            <!-- <li><a href="#"><i class="fa fa-facebook"></i></a></li> -->
+                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>&nbsp;
+                            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                            <!-- <li><a href="#"><i class="fa fa-instagram"></i></a></li> -->
+                        </ul>
+                        <ul class="terms">
+                            <li><a href="#">Terms & Services</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="right-side">
+                    <div class="forms">
+
+                        <img src="images/iaslogo.png" width="100" style="float: center;">
+                        <p style="font-size: 30px; text-align: center; font-weight: bold;color:#002e5b;">SignUp</p>
+                        <i class="fa fa-user" style="color: black; font-size: 22px; float: left; margin-top: 10px;"></i>&nbsp;&nbsp;&nbsp;
+                        <label for="uname" class="form-label" style="float: left; line-height: 2.5;">&nbsp;&nbsp;Email Id:</label>
+                        <div class="form-inputs">
+                            <input type="text" id="email" placeholder="Email-Id" required>
+
+                        </div>
+                        <!-- <div class="form-inputs"> <input type="email" placeholder="Email" autocomplete='chrome-off'>
+                            <i class="fa fa-envelope" style="color: black;"></i>
+                        </div> -->
+                        <i class="fa fa-lock" style="color: black; font-size: 22px; float: left; margin-top: 10px;"></i>
+                        <label for="pass" class="form-label" style="float: left; line-height: 2.5;">&nbsp;&nbsp;Password:</label>
+                        <div class="form-inputs"> <input id="password_input" class="password-input" title="Enter Password having " autocomplete='chrome-off' type="password" placeholder="Password">
+                            <i class="fa fa-eye-slash" style="color: black; font-size: 22px; margin-right: 12px; margin-top: 43px;" id="password_eye"></i>
+
+                        </div>
+                        <!-- <a href="forgot.html" style="float: right;">Forgot Password</a><br> -->
+                        <div class="form-group d-md-flex">
+                            <div class="w-50 text-left">
+                               
+                            </div>
+                        </div>
+
+                        <!-- <p id="random_password" class="random_password"></p> -->
+
+                        <div class="submit-button"> <button type="submit" id="log" style="background-color:#002e5b">SignUp </button></div>
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/loginjs.js"></script>
+    
+    <script src="https://www.gstatic.com/firebasejs/3.7.4/firebase.js">
+    </script>
+       <script type="module">
+     
+        const firebaseConfig = 
+        { 
+         apiKey: "AIzaSyCAKPeaso3RxdTnt8vCb3LvfSzBWbjnGZ4", 
+        authDomain: "interviewasservice-7f568.firebaseapp.com", 
+        databaseURL: "https://interviewasservice-7f568-default-rtdb.firebaseio.com",
+        projectId: "interviewasservice-7f568", 
+        storageBucket: "interviewasservice-7f568.appspot.com", 
+        messagingSenderId: "966361105728", 
+        appId: "1:966361105728:web:1479f6f09a693702cb66a5", 
+        measurementId: "G-Q8K6M3D9NK" }; 
+        firebase.initializeApp(firebaseConfig)
+        var usersRef = firebase.database().ref().child('ourusers'); 
+        
+             
+    const element = document.getElementById("log");
+    element.addEventListener("click", myFunction);
+    function myFunction(){
+    var email=document.getElementById("email").value;
+    var password=document.getElementById("password_input").value;
+ 
+firebase.auth().createUserWithEmailAndPassword(email, password).then(function() {
+  alert("Registration is successfull");
+  firebase.auth().signOut();
+  window.location.href = "Index.html";
+
+
+}).catch(function(error) {
+    // Handle Errors here.
+    var errorCode = error.code;
+    var errorMessage = error.message;
+    console.log(errorCode);
+    console.log(errorMessage);
+  });
+ }
+       </script>
+</body>
+
+</html>
